@@ -13,7 +13,7 @@
     <div class="content">      
       <!--FORMULÁRIO DE LOGIN-->
       <div id="cadastro">
-        <form method="post" action="cadastro_controller.php?acao=inserir"> 
+        <form method="post" action="cadastro_controller.php?acao=inserir" autocomplete="off"> 
           <h1>Cadastro</h1> 
            
           <p> 

@@ -42,7 +42,6 @@
             $_SESSION["autenticado"] = $valor->id;
         }
         header('location: nova_postagem.php');
-        
       }
  }
 

@@ -160,13 +160,23 @@
 </head>
  
 <body>
-<nav class="navbar navbar-light bg-success">
-  <a class="navbar-brand" href="#">Unirio</a>
-</nav>
+  <nav class="navbar navbar-light bg-light">
+    <div class="container">
+			<a class="navbar-brand" href="#">
+				<img src="img/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+			  	UNIRIO
+			</a>
+			<a class="navbar-nav ml-auto" href="sair.php">
+					Sair
+			</a>
+    </div>
+  </nav>
+
  <div class="container" style="margin-top: 30px;">
  <div class="alert alert-success text-center" role="alert">
   Sua publicação foi realizada com sucesso. Dentro de alguns instantes ela estará na plataforma Wordpress!
-</div>
+ </div>
+
 <div class="card">
   <div class="card-header">
       Dados da publicação
@@ -180,12 +190,15 @@
        									
 										
  <?php } ?>
- <button onclick="goBack()" class="btn btn-danger text-right">Voltar</button>
-  </div>
-</div>
- </div>
-
     
+    <div style="position: absolute; bottom: 0; margin-bottom: 10px;">
+      <button onclick="goBack()" class="btn btn-danger text-right">Voltar</button>
+    </div>
+
+  </div>
+ </div>
+</div>
+ 
 </body>
 </html>
 

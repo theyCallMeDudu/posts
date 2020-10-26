@@ -15,12 +15,12 @@
     <div class="content">      
       <!--FORMULÁRIO DE LOGIN-->
       <div id="login">
-        <form method="post" action="cadastro_controller.php?acao=autenticar"> 
+        <form method="post" action="cadastro_controller.php?acao=autenticar" autocomplete="off"> 
           <h1>Login</h1> 
            
           <p> 
             <label for="email_login">Seu e-mail</label>
-            <input id="email_login" name="email_login" required="required"  type="text"  placeholder="ex. contato@htmlecsspro.com" /> 
+            <input id="email_login" name="email_login" required="required"  type="email"  placeholder="ex. fulano@gmail.com" /> 
           </p>
 
           <p> 
