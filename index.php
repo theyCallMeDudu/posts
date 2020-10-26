@@ -49,16 +49,16 @@
 								<thead>
 								
 									<tr>
+										<th>Id</th>
 										<th>Título</th>
-										<th>Conteúdo</th>
 										<th>Data/Hora - publicação</th>
 									</tr>
 									<tbody>
 									<?php foreach($posts as $indice => $post){ ?>
 										<tr>
 
+											<td><?=$post->id?></td>
 											<td><?=$post->title?></td>
-											<td><?=$post->content?></td>
 											<td><?=$post->manipulador?></td>
 										</tr>
 										<?php } ?>
