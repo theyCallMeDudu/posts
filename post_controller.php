@@ -10,12 +10,14 @@
 if($acao == 'inserir'){
     session_start();
     $verifica = $_SESSION["autenticado"];
- $post = new Post();
- $conexao = new conexao();
- $postService = new PostService($conexao, $post);
- foreach($postService->quantidade() as $key => $valor){
-     $total = $valor->qtd;
- }
+    $post = new Post();
+    $conexao = new conexao();
+    $postService = new PostService($conexao, $post);
+    
+    foreach($postService->quantidade() as $key => $valor){
+        $total = $valor->qtd;
+    }
+
  $post->__set('id_user', $verifica);
  $post->__set('title', $_POST['title']);
  $post->__set('content', $_POST['content']);
@@ -62,6 +64,14 @@ if($acao == 'inserir'){
 
     $postService = new PostService($conexao, $post);
     $posts = $postService->recuperarPublica();
+} else if($acao == 'remover'){
+    $post = new Post();
+    $post->__set('id', $_POST['id']);
+
+    $conexao = new Conexao();
+    $postService = new PostService($conexao, $post);
+    $post_remove = $postService->remover();
+    header('location: todas_postagens.php');
 }
 
 ?>

@@ -22,6 +22,14 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script> 
          <script>
+		 
+			 function excluir(id, txt_title){
+				 let form = document.createElement('form');
+				 form.action = 'post_controller.php?acao=remover'
+				 form.method = 'post'
+			 }
+
+
 			 function editar(id, txt_title, txt_content){
 				let form = document.createElement('form')
 				form.action = 'post_controller.php?acao=atualizar'
@@ -149,7 +157,7 @@
 										</div>
 										<div class="card-footer text-muted">
 											<div>
-												<i class="fas fa-trash-alt fa-lg text-danger"></i>
+												<i class="fas fa-trash-alt fa-lg text-danger" data-toggle="modal" data-target="#modalExclusao" onclick="excluir(<?=$post->id?>, '<?=$post->title?>')"></i>
 												<i class="fas fa-edit fa-lg text-info" onclick="editar(<?=$post->id?>, '<?=$post->title?>', '<?=$post->content?>')"></i>
 												<i class="fas fa-check-square fa-lg text-success"  data-toggle="modal" data-target="#exampleModal" onclick="publicar(<?=$post->id?>)"></i>
 											</div>
@@ -159,43 +167,62 @@
 								
 								
 								</div>
-
-						
-
-							
-
-								
-								
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Atenção!</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-	  </div>
-	  <form action="post_controller.php?acao=publicar" method="post">
-      <div class="modal-body">
-		Você realmente deseja realizar a publicação na plataforma wordpress?
-		<input type="hidden" id="id_publica" name="id" value="" class="form-control">
-		
-		
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Não</button>
-		<button type="submit" class="btn btn-success">Sim</button>
-		</form>
-      </div>
-    </div>
-  </div>
-</div>
+
+		<!-- Modal exclusão -->
+		<div class="modal fade" id="modalExclusao" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Atenção!</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+
+					<form action="post_controller.php?acao=remover" method="post">
+						<div class="modal-body">
+							Você realmente deseja excluir a postagem?
+							<input type="hidden" id="id_exclui" name="id" value="" class="form-control">
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-danger" data-dismiss="modal">Não</button>
+							<button type="submit" class="btn btn-success">Sim</button>
+					</form>
+						</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Modal publicação -->
+		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Atenção!</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+
+					<form action="post_controller.php?acao=publicar" method="post">
+						<div class="modal-body">
+							Você realmente deseja realizar a publicação na plataforma wordpress?
+							<input type="hidden" id="id_publica" name="id" value="" class="form-control">
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-danger" data-dismiss="modal">Não</button>
+							<button type="submit" class="btn btn-success">Sim</button>
+					</form>
+						</div>
+				</div>
+			</div>
+		</div>
    
 
 	</body>

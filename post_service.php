@@ -47,8 +47,11 @@ class PostService{
     }
 
     public function remover(){
-        
+        $query = "delete from posts where id =: id";
+        $stmt = $this->conexao->prepare($query);
+        return $stmt->execute();
     }
+
     public function quantidade(){
         $query = "select count(*) as qtd from posts";
         $stmt = $this->conexao->prepare($query);
