@@ -23,11 +23,11 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script> 
          <script>
 		 
-			 function excluir(id, txt_title){
-				 let form = document.createElement('form');
-				 form.action = 'post_controller.php?acao=remover'
-				 form.method = 'post'
-			 }
+			//  function excluir(id, txt_title){
+			// 	 let form = document.createElement('form');
+			// 	 form.action = 'post_controller.php?acao=remover'
+			// 	 form.method = 'delete'
+			//  }
 
 
 			 function editar(id, txt_title, txt_content){
@@ -157,9 +157,9 @@
 										</div>
 										<div class="card-footer text-muted">
 											<div>
-												<i class="fas fa-trash-alt fa-lg text-danger" data-toggle="modal" data-target="#modalExclusao" onclick="excluir(<?=$post->id?>, '<?=$post->title?>')"></i>
-												<i class="fas fa-edit fa-lg text-info" onclick="editar(<?=$post->id?>, '<?=$post->title?>', '<?=$post->content?>')"></i>
-												<i class="fas fa-check-square fa-lg text-success"  data-toggle="modal" data-target="#exampleModal" onclick="publicar(<?=$post->id?>)"></i>
+												<i class="fas fa-trash-alt fa-lg text-danger" data-toggle="modal" data-target="#modalExclusao" title="Excluir"></i>
+												<i class="fas fa-edit fa-lg text-info" onclick="editar(<?=$post->id?>, '<?=$post->title?>', '<?=$post->content?>')" title="Editar"></i>
+												<i class="fas fa-check-square fa-lg text-success"  data-toggle="modal" data-target="#exampleModal" onclick="publicar(<?=$post->id?>)" title="Publicar"></i>
 											</div>
 										</div>
 									</div>
@@ -188,11 +188,17 @@
 					<form action="post_controller.php?acao=remover" method="post">
 						<div class="modal-body">
 							Você realmente deseja excluir a postagem?
-							<input type="hidden" id="id_exclui" name="id" value="" class="form-control">
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-danger" data-dismiss="modal">Não</button>
-							<button type="submit" class="btn btn-success">Sim</button>
+
+							<form action="post_controller.php?acao=remover" method="post">
+								<input type="hidden" name="id" value="<?=$post->id?>">
+								<button type="submit" class="btn btn-success">
+									Sim
+								</button>
+							</form>
+							
 					</form>
 						</div>
 				</div>
