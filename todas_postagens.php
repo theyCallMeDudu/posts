@@ -19,15 +19,26 @@
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 		<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script> 
-         <script>
+    	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script> 
+        <script>
 		 
-			//  function excluir(id, txt_title){
-			// 	 let form = document.createElement('form');
-			// 	 form.action = 'post_controller.php?acao=remover'
-			// 	 form.method = 'delete'
-			//  }
+			 function excluir(id){
+				 let form = document.createElement('form');
+				 form.action = 'post_controller.php?acao=remover'
+				 form.method = 'post'
+
+				 let inputId = document.createElement('input')
+				 inputId.type = 'hidden'
+				 inputId.name = 'id'
+				 inputId.value = id
+
+				 form.appendChild(inputId)
+
+				 document.getElementById("id_exclui").value = id
+
+				 console.log(form);
+			 }
 
 
 			 function editar(id, txt_title, txt_content){
@@ -144,8 +155,6 @@
 							
 							<div class="row mb-3 d-flex align-items-center tarefa text-center">
 
-							
-
 									<?php foreach($posts as $indice => $post){ ?>
 									<div class="card text-center mb-3" style="width: 1000px;">
 										<div class="card-header">
@@ -157,7 +166,7 @@
 										</div>
 										<div class="card-footer text-muted">
 											<div>
-												<i class="fas fa-trash-alt fa-lg text-danger" data-toggle="modal" data-target="#modalExclusao" title="Excluir"></i>
+												<i class="fas fa-trash-alt fa-lg text-danger" data-toggle="modal" data-target="#modalExclusao" onclick="excluir(<?=$post->id?>)" title="Excluir"></i>
 												<i class="fas fa-edit fa-lg text-info" onclick="editar(<?=$post->id?>, '<?=$post->title?>', '<?=$post->content?>')" title="Editar"></i>
 												<i class="fas fa-check-square fa-lg text-success"  data-toggle="modal" data-target="#exampleModal" onclick="publicar(<?=$post->id?>)" title="Publicar"></i>
 											</div>
@@ -188,17 +197,11 @@
 					<form action="post_controller.php?acao=remover" method="post">
 						<div class="modal-body">
 							Você realmente deseja excluir a postagem?
+							<input type="hidden" id="id_exclui" name="id" value="" class="form-control">
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-danger" data-dismiss="modal">Não</button>
-
-							<form action="post_controller.php?acao=remover" method="post">
-								<input type="hidden" name="id" value="<?=$post->id?>">
-								<button type="submit" class="btn btn-success">
-									Sim
-								</button>
-							</form>
-							
+							<button type="submit" class="btn btn-success">Sim</button>
 					</form>
 						</div>
 				</div>
