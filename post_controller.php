@@ -50,13 +50,16 @@ if($acao == 'inserir'){
    }
 } else if($acao == 'publicar'){
     $post = new Post();
+
     date_default_timezone_set('America/Sao_Paulo');
     $hora =  date('Y-m-d  H:i:s');
     $post->__set('id', $_POST['id']);
     $post->__set('manipulador', $hora);
+
     $conexao = new Conexao();
     $postService = new PostService($conexao, $post);
     $postService->publicar();
+
     header('location: http://localhost/posts/wordpress/wp-post/original');
 } else if($acao == 'recuperarPublica'){
     $post = new Post();
@@ -70,8 +73,13 @@ if($acao == 'inserir'){
 
     $conexao = new Conexao();
     $postService = new PostService($conexao, $post);
-    $post_remove = $postService->remover();
-    header('location: todas_postagens.php');
+    
+    if($postService->remover()){
+        header('location: todas_postagens.php');
+    } else {
+        echo 'Postagem não deletada.';
+    }
+    
 }
 
 ?>
