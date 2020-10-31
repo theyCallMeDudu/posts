@@ -49,6 +49,7 @@ class PostService{
     public function remover(){
         $query = "delete from posts where id = :id";
         $stmt = $this->conexao->prepare($query);
+        $stmt->bindValue(':id', $this->post->__get('id'));
         return $stmt->execute();
     }
 

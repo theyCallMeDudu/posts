@@ -28,12 +28,12 @@
 				 form.action = 'post_controller.php?acao=remover'
 				 form.method = 'post'
 
-				 let inputId = document.createElement('input')
-				 inputId.type = 'hidden'
-				 inputId.name = 'id'
-				 inputId.value = id
+				 let inputDel = document.createElement('input')
+				 inputDel.type = 'hidden'
+				 inputDel.name = 'id'
+				 inputDel.value = id
 
-				 form.appendChild(inputId)
+				 form.appendChild(inputDel)
 
 				 document.getElementById("id_exclui").value = id
 
